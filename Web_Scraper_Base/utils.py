@@ -82,6 +82,7 @@ def read_all_sheets(file_path):
     for sheet in xls.sheet_names:
         df = pd.read_excel(file_path, sheet_name=sheet)
         sheet_dfs.append(df)
+        print(f"Read {file_path} Sheet {sheet}")
     return sheet_dfs
 
 
@@ -89,10 +90,11 @@ def read_all_files(directory_name):
     file_dfs = []
     for file_name in os.listdir(directory_name):
         full_path = f"{directory_name}/{file_name}"
-        print(full_path)
         if full_path.endswith('.xlsx'):
             sheets = read_all_sheets(full_path)
             file_dfs += sheets
+            print(f"Read {file_name}")
+            print()
     return file_dfs
 
 
@@ -100,6 +102,7 @@ def do_very_specific_finding(directory_name):
 
     dfs = read_all_files(directory_name)
     combined_df = pd.concat(dfs, ignore_index=True)
+    print(f"Read all files in directory {directory_name}")
 
     location_filter_df = combined_df[combined_df['Settlement Point Name'] == 'HB_WEST']
 
