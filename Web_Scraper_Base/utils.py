@@ -57,15 +57,6 @@ def find_rows_with_zip_data(table):
             download_and_unzip_files(name, link)
 
 
-def find_tables_with_zip_data(page):
-    divs = page.find_all(
-        'div', {'class': 'section', 'style': 'display:none'}, recursive=True)
-
-    for div in divs:
-        table = div.find_all('table', recursive=False)[0]
-        find_rows_with_zip_data(table)
-
-
 def do_scraping(url):
     response = requests.get(url)
 
@@ -74,7 +65,7 @@ def do_scraping(url):
         # Parse the HTML content of the page
         page = BeautifulSoup(response.text, "html.parser")
 
-        find_tables_with_zip_data(page)
+        find_rows_with_zip_data(page)
 
     else:
         print(f"Failed to fetch the webpage: {url}")
