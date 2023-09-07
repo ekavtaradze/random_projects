@@ -2,7 +2,7 @@
 
 For "HB_WEST" settlement location find where average monthly price of power has gone above $100/MWh.
 
-** Prep **
+**Prep**
 
 ```
 pip install requests beautifulsoup4 python-dotenv pandas
